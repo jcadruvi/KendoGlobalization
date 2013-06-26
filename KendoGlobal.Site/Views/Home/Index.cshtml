@@ -4,7 +4,22 @@
 }
 
 <div id="jobGrid"></div>
-
+<div class="jobLine">
+    <span class="jobLabel">Id: </span>
+    <span>1</span>
+</div>
+<div class="jobLine">
+    <span class="jobLabel">Name: </span>
+    <span><input id="name" type="text"/></span>
+</div>
+<div class="jobLine">
+    <span class="jobLabel">Start: </span>
+    <span><input id="start" type="text"/></span>
+</div>
+<div class="jobLine">
+    <span class="jobLabel">End: </span>
+    <span><input id="end" type="text"/></span>
+</div>
 <script>
     $("#jobGrid").kendoGrid({
         autoBind: true,
@@ -66,4 +81,30 @@
                 width: "110px"
             }]
     });
+    var start = $("#start").kendoDatePicker({
+        change: function () {
+            var endDate = end.value();
+
+            if (endDate) {
+                endDate = new Date(endDate);
+                endDate.setDate(endDate.getDate() - 1);
+                start.max(endDate);
+            }
+        },
+        format: 'MM/dd/yyyy'
+    }).data("kendoDatePicker");
+    var end = $("#end").kendoDatePicker({
+        change: function () {
+            var endDate = end.value();
+
+            if (endDate) {
+                endDate = new Date(endDate);
+                endDate.setDate(endDate.getDate() - 1);
+                start.max(endDate);
+            }
+        },
+        format: 'MM/dd/yyyy'
+    }).data("kendoDatePicker");
+    start.max(end.value());
+    end.min(start.value());
 </script>

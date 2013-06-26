@@ -59,3 +59,12 @@ textarea {
 .validation-summary-valid {
     display: none;
 }
+
+.jobLabel {
+    display: inline-block;
+    width: 80px;
+}
+
+.jobLine {
+    margin: 5px;
+}
