@@ -3,4 +3,67 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div id="jobGrid"></div>
+
+<script>
+    $("#jobGrid").kendoGrid({
+        autoBind: true,
+        change: function () {
+            //storeViewModel.onStoreGridChanged();
+        },
+        filterable: false,
+        groupable: false,
+        height: "300px",
+        pageable: true,
+        resizeable: true,
+        selectable: "single, row",
+        sortable: {
+            mode: "single",
+            allowUnsort: false
+        },
+        dataSource: {
+            pageSize: 30,
+            type: "json",
+            transport: {
+                read: function (options) {
+                    $.ajax({
+                        url: "api/JobApi/GetJobs",
+                        success: function (result) {
+                            options.success(result);
+                        },
+                        type: "GET"
+                    });
+                }
+            },
+            schema: {
+                model: {
+                    id: "Id",
+                    fields: {
+                        Name: { type: "string" },
+                        StartDate: { type: "date" },
+                        EndDate: { type: "date" }
+                    }
+                }
+            }
+        },
+        columns: [
+            {
+                field: "Id",
+                title: "Job Id",
+                width: "70px"
+            },
+            {
+                field: "Name",
+                title: "Name",
+                width: "280px"
+            }, {
+                field: "StartDate",
+                title: "Start",
+                width: "110px"
+            }, {
+                field: "EndDate",
+                title: "End",
+                width: "110px"
+            }]
+    });
+</script>
