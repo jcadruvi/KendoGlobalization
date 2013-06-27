@@ -6,11 +6,11 @@
 <div id="jobGrid"></div>
 <div class="jobLine">
     <span class="jobLabel">Id: </span>
-    <span>1</span>
+    <span data-bind="html: id"></span>
 </div>
 <div class="jobLine">
     <span class="jobLabel">Name: </span>
-    <span><input id="name" type="text"/></span>
+    <span><input class="k-textbox" data-bind="value: name" id="name" type="text"/></span>
 </div>
 <div class="jobLine">
     <span class="jobLabel">Start: </span>
@@ -20,91 +20,100 @@
     <span class="jobLabel">End: </span>
     <span><input id="end" type="text"/></span>
 </div>
+
+<script src="@Url.Content("~/Scripts/jobViewModel.js")"></script>
 <script>
-    $("#jobGrid").kendoGrid({
-        autoBind: true,
-        change: function () {
-            //storeViewModel.onStoreGridChanged();
-        },
-        filterable: false,
-        groupable: false,
-        height: "300px",
-        pageable: true,
-        resizeable: true,
-        selectable: "single, row",
-        sortable: {
-            mode: "single",
-            allowUnsort: false
-        },
-        dataSource: {
-            pageSize: 30,
-            type: "json",
-            transport: {
-                read: function (options) {
-                    $.ajax({
-                        url: "api/JobApi/GetJobs",
-                        success: function (result) {
-                            options.success(result);
-                        },
-                        type: "GET"
-                    });
-                }
+    (function() {
+        var viewModel = jobViewModel();
+        viewModel.setObservables();
+        $("#jobGrid").kendoGrid({
+            autoBind: true,
+            change: function() {
+                viewModel.onJobGridChange();
             },
-            schema: {
-                model: {
-                    id: "Id",
-                    fields: {
-                        Name: { type: "string" },
-                        StartDate: { type: "date" },
-                        EndDate: { type: "date" }
+            filterable: false,
+            groupable: false,
+            height: "300px",
+            pageable: true,
+            resizeable: true,
+            selectable: "single, row",
+            sortable: {
+                mode: "single",
+                allowUnsort: false
+            },
+            dataSource: {
+                pageSize: 30,
+                type: "json",
+                transport: {
+                    read: function(options) {
+                        $.ajax({
+                            url: "api/JobApi/GetJobs",
+                            success: function(result) {
+                                options.success(result);
+                            },
+                            type: "GET"
+                        });
+                    }
+                },
+                schema: {
+                    model: {
+                        id: "Id",
+                        fields: {
+                            Name: { type: "string" },
+                            StartDate: { type: "date" },
+                            EndDate: { type: "date" }
+                        }
                     }
                 }
-            }
-        },
-        columns: [
-            {
-                field: "Id",
-                title: "Job Id",
-                width: "70px"
             },
-            {
-                field: "Name",
-                title: "Name",
-                width: "280px"
-            }, {
-                field: "StartDate",
-                title: "Start",
-                width: "110px"
-            }, {
-                field: "EndDate",
-                title: "End",
-                width: "110px"
-            }]
-    });
-    var start = $("#start").kendoDatePicker({
-        change: function () {
-            var endDate = end.value();
+            columns: [
+                {
+                    field: "Id",
+                    title: "Job Id",
+                    width: "70px"
+                },
+                {
+                    field: "Name",
+                    title: "Name",
+                    width: "280px"
+                }, {
+                    field: "StartDate",
+                    title: "Start",
+                    width: "110px"
+                }, {
+                    field: "EndDate",
+                    title: "End",
+                    width: "110px"
+                }]
+        });
+        viewModel.jobGridData = $("#jobGrid").data('kendoGrid');
+        var start = $("#start").kendoDatePicker({
+            change: function() {
+                var endDate = end.value();
 
-            if (endDate) {
-                endDate = new Date(endDate);
-                endDate.setDate(endDate.getDate() - 1);
-                start.max(endDate);
-            }
-        },
-        format: 'MM/dd/yyyy'
-    }).data("kendoDatePicker");
-    var end = $("#end").kendoDatePicker({
-        change: function () {
-            var endDate = end.value();
+                if (endDate) {
+                    endDate = new Date(endDate);
+                    endDate.setDate(endDate.getDate() - 1);
+                    start.max(endDate);
+                }
+            },
+            format: 'MM/dd/yyyy'
+        }).data("kendoDatePicker");
+        var end = $("#end").kendoDatePicker({
+            change: function() {
+                var endDate = end.value();
 
-            if (endDate) {
-                endDate = new Date(endDate);
-                endDate.setDate(endDate.getDate() - 1);
-                start.max(endDate);
-            }
-        },
-        format: 'MM/dd/yyyy'
-    }).data("kendoDatePicker");
-    start.max(end.value());
-    end.min(start.value());
+                if (endDate) {
+                    endDate = new Date(endDate);
+                    endDate.setDate(endDate.getDate() - 1);
+                    start.max(endDate);
+                }
+            },
+            format: 'MM/dd/yyyy'
+        }).data("kendoDatePicker");
+        start.max(end.value());
+        end.min(start.value());
+        viewModel.startDateData = start;
+        viewModel.endDateData = end;
+    })();
 </script>
