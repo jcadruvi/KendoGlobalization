@@ -1,4 +1,5 @@
-﻿@{
+﻿@model KendoGlobal.Models.BaseViewModel
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -32,7 +33,11 @@
     (function() {
         var viewModel = jobViewModel();
         viewModel.setObservables();
+        kendo.culture('@Model.Culture');
+        alert('@Model.Culture');
+        alert(kendo.culture().calendar.patterns.d);
         $('#culture').kendoComboBox({
+            change: viewModel.onCultureChange,
             dataTextField: "Value",
             dataValueField: "Key",
             dataSource: {
@@ -46,13 +51,13 @@
                 }
             },
             filter: "contains",
-            suggest: true
+            suggest: true,
+            value: '@Model.Culture'
         });
+        viewModel.cultureData = $('#culture').data('kendoComboBox');
         $("#jobGrid").kendoGrid({
             autoBind: true,
-            change: function() {
-                viewModel.onJobGridChange();
-            },
+            change: viewModel.onJobGridChange,
             filterable: false,
             groupable: false,
             height: "300px",
@@ -119,7 +124,7 @@
                     start.max(endDate);
                 }
             },
-            format: 'MM/dd/yyyy'
+            format: kendo.culture().calendar.patterns.d
         }).data("kendoDatePicker");
         var end = $("#end").kendoDatePicker({
             change: function() {
@@ -131,7 +136,7 @@
                     start.max(endDate);
                 }
             },
-            format: 'MM/dd/yyyy'
+            format: kendo.culture().calendar.patterns.d
         }).data("kendoDatePicker");
         start.max(end.value());
         end.min(start.value());

@@ -140,7 +140,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Job.cs" />
+    <Compile Include="Models\BaseViewModel.cs" />
     <Compile Include="NinjectWebApi\NinjectDependencyResolver.cs" />
     <Compile Include="NinjectWebApi\NinjectDependencyScope.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -257,6 +257,10 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\KendoGlobal.Models\KendoGlobal.Models.csproj">
+      <Project>{668691ae-0abc-41ea-8942-a50510740c8e}</Project>
+      <Name>KendoGlobal.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KendoGlobal.Services\KendoGlobal.Services.csproj">
       <Project>{4ad2f75e-58ef-411b-8bae-e78132376096}</Project>
       <Name>KendoGlobal.Services</Name>

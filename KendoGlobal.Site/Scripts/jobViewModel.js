@@ -1,6 +1,7 @@
 ﻿function jobViewModel() {
     var self = {};
 
+    self.cultureData = null;
     self.endDateData = null;
     self.jobGridData = null;
     self.id = null;
@@ -18,6 +19,18 @@
         }
         return dataItem.Id;
     };
+
+    self.onCultureChange = function() {
+        $.ajax({
+            dataType: 'json',
+            success: function (result) {
+                window.location.reload(true);
+            },
+            type: 'PUT',
+            url: 'api/CultureApi/SetCulture?culture=' + self.cultureData.value()
+        });
+    };
+    
 
     self.onJobGridChange = function () {
         var postData = {};

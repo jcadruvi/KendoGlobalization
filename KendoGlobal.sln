@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KendoGlobal.Services", "Ken
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KendoGlobal.Repositories", "KendoGlobal.Repositories\KendoGlobal.Repositories.csproj", "{EE30AC7D-6BB3-44BD-8529-463AE362AB76}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KendoGlobal.Models", "KendoGlobal.Models\KendoGlobal.Models.csproj", "{668691AE-0ABC-41EA-8942-A50510740C8E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{EE30AC7D-6BB3-44BD-8529-463AE362AB76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE30AC7D-6BB3-44BD-8529-463AE362AB76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE30AC7D-6BB3-44BD-8529-463AE362AB76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{668691AE-0ABC-41EA-8942-A50510740C8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{668691AE-0ABC-41EA-8942-A50510740C8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{668691AE-0ABC-41EA-8942-A50510740C8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{668691AE-0ABC-41EA-8942-A50510740C8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
