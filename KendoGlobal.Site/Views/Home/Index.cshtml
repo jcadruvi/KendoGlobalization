@@ -32,10 +32,12 @@
 <script>
     (function() {
         var viewModel = jobViewModel();
+        var culture = '@Model.Culture';
+        if (!culture) {
+            culture = 'en-US';
+        }
         viewModel.setObservables();
-        kendo.culture('@Model.Culture');
-        alert('@Model.Culture');
-        alert(kendo.culture().calendar.patterns.d);
+        kendo.culture(culture);
         $('#culture').kendoComboBox({
             change: viewModel.onCultureChange,
             dataTextField: "Value",
@@ -52,7 +54,7 @@
             },
             filter: "contains",
             suggest: true,
-            value: '@Model.Culture'
+            value: culture
         });
         viewModel.cultureData = $('#culture').data('kendoComboBox');
         $("#jobGrid").kendoGrid({
@@ -105,10 +107,12 @@
                     width: "280px"
                 }, {
                     field: "StartDate",
+                    format: "{0:" + kendo.culture().calendar.patterns.d + "}",
                     title: "Start",
                     width: "110px"
                 }, {
                     field: "EndDate",
+                    format: "{0:" + kendo.culture().calendar.patterns.d + "}",
                     title: "End",
                     width: "110px"
                 }]
