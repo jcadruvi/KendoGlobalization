@@ -3,12 +3,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<br/>
-<div>
-    <span class="jobLabel">Culture: </span>
-    <input id="culture" />
-</div>
-<br/>
+
 <div id="jobGrid"></div>
 <br/>
 <div class="jobLine">
@@ -32,31 +27,7 @@
 <script>
     (function() {
         var viewModel = jobViewModel();
-        var culture = '@Model.Culture';
-        if (!culture) {
-            culture = 'en-US';
-        }
         viewModel.setObservables();
-        kendo.culture(culture);
-        $('#culture').kendoComboBox({
-            change: viewModel.onCultureChange,
-            dataTextField: "Value",
-            dataValueField: "Key",
-            dataSource: {
-                type: "json",
-                transport: {
-                    read: {
-                        url: "api/CultureApi/GetCultures",
-                        dataType: "json",
-                        type: "GET"
-                    }
-                }
-            },
-            filter: "contains",
-            suggest: true,
-            value: culture
-        });
-        viewModel.cultureData = $('#culture').data('kendoComboBox');
         $("#jobGrid").kendoGrid({
             autoBind: true,
             change: viewModel.onJobGridChange,
@@ -88,6 +59,8 @@
                     model: {
                         id: "Id",
                         fields: {
+                            Percent: { type: "number" },
+                            Price: { type: "number" },
                             Name: { type: "string" },
                             StartDate: { type: "date" },
                             EndDate: { type: "date" }
@@ -105,7 +78,18 @@
                     field: "Name",
                     title: "Name",
                     width: "280px"
-                }, {
+                },
+                {
+                    field: "Percent",
+                    title: "Percent",
+                    width: "110px"
+                },
+                {
+                    field: "Price",
+                    title: "Price",
+                    width: "110px"
+                },
+                {
                     field: "StartDate",
                     format: "{0:" + kendo.culture().calendar.patterns.d + "}",
                     title: "Start",

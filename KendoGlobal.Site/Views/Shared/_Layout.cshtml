@@ -11,6 +11,43 @@
 <body>
     <header>
     </header>
+    
+    <br/>
+    <div>
+        <span class="jobLabel">Culture: </span>
+        <input id="culture" />
+    </div>
+    <br/>
+    <script>
+        (function () {
+            var viewModel = layoutViewModel();
+            var culture = '@Model.Culture';
+            if (!culture) {
+                culture = 'en-US';
+            }
+            kendo.culture(culture);
+            $('#culture').kendoComboBox({
+                change: viewModel.onCultureChange,
+                dataTextField: "Value",
+                dataValueField: "Key",
+                dataSource: {
+                    type: "json",
+                    transport: {
+                        read: {
+                            url: "api/CultureApi/GetCultures",
+                            dataType: "json",
+                            type: "GET"
+                        }
+                    }
+                },
+                filter: "contains",
+                suggest: true,
+                value: culture
+            });
+            viewModel.cultureData = $('#culture').data('kendoComboBox');
+        })();
+    </script>
+
     @RenderBody()
     
     @RenderSection("scripts", required: false)

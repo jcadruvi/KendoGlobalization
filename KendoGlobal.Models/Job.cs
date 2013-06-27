@@ -9,6 +9,8 @@ namespace KendoGlobal.Models
     {
         public DateTime EndDate { get; set; }
         public int Id { get; set; }
+        public decimal Percent { get; set; }
+        public decimal Price { get; set; }
         public string Name { get; set; }
         public DateTime StartDate { get; set; }
     }
