@@ -3,7 +3,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div>
+    <input id="culture" />
+</div>
+<br/>
 <div id="jobGrid"></div>
+<br/>
 <div class="jobLine">
     <span class="jobLabel">Id: </span>
     <span data-bind="html: id"></span>
@@ -26,6 +31,22 @@
     (function() {
         var viewModel = jobViewModel();
         viewModel.setObservables();
+        $('#culture').kendoComboBox({
+            dataTextField: "Value",
+            dataValueField: "Key",
+            dataSource: {
+                type: "json",
+                transport: {
+                    read: {
+                        url: "api/CultureApi/GetCultures",
+                        dataType: "json",
+                        type: "GET"
+                    }
+                }
+            },
+            filter: "contains",
+            suggest: true
+        });
         $("#jobGrid").kendoGrid({
             autoBind: true,
             change: function() {
