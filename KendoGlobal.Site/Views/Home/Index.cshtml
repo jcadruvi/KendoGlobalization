@@ -2,8 +2,9 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<br/>
 <div>
+    <span class="jobLabel">Culture: </span>
     <input id="culture" />
 </div>
 <br/>
@@ -15,15 +16,15 @@
 </div>
 <div class="jobLine">
     <span class="jobLabel">Name: </span>
-    <span><input class="k-textbox" data-bind="value: name" id="name" type="text"/></span>
+    <input class="k-textbox" data-bind="value: name" id="name" type="text"/>
 </div>
 <div class="jobLine">
     <span class="jobLabel">Start: </span>
-    <span><input id="start" type="text"/></span>
+    <input id="start" type="text"/>
 </div>
 <div class="jobLine">
     <span class="jobLabel">End: </span>
-    <span><input id="end" type="text"/></span>
+    <input id="end" type="text"/>
 </div>
 
 <script src="@Url.Content("~/Scripts/jobViewModel.js")"></script>
