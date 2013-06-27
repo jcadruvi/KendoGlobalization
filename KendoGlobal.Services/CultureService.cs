@@ -7,7 +7,7 @@ using KendoGlobal.Repositories;
 
 namespace KendoGlobal.Services
 {
-    public class CultureService
+    public class CultureService : ICultureService
     {
         private CultureRepository _repository;
         public CultureService()
