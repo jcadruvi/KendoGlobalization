@@ -16,9 +16,11 @@ namespace KendoGlobal.Controllers
         public CultureApiController(ICultureService service)
         {
             _cultures = new Collection<KeyValuePair<string, string>>();
-            _cultures.Add(new KeyValuePair<string, string>("en-US", "English US"));
+            _cultures.Add(new KeyValuePair<string, string>("bg-BG", "Bulgarian"));
+            _cultures.Add(new KeyValuePair<string, string>("de-DE", "German"));
             _cultures.Add(new KeyValuePair<string, string>("en-GB", "English GB"));
-
+            _cultures.Add(new KeyValuePair<string, string>("en-US", "English US"));
+            _cultures.Add(new KeyValuePair<string, string>("fr-FR", "French"));
             _service = service;
         }
         public IEnumerable<KeyValuePair<string, string>> GetCultures()

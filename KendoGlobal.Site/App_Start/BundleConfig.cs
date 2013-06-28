@@ -41,8 +41,11 @@ namespace KendoGlobal.App_Start
                          "~/Scripts/jquery.validate.unobtrusive.js",
                          "~/Scripts/jquery.unobtrusive-ajax.js",
                          "~/Scripts/layoutViewModel.js",
-                         "~/Scripts/Cultures/en-US.js",
-                         "~/Scripts/Cultures/en-GB.js"));
+                         "~/Scripts/Cultures/bg-BG.js",
+                         "~/Scripts/Cultures/de-DE.js",
+                         "~/Scripts/Cultures/en-GB.js",
+                         "~/Scripts/Cultures/en-US.js", 
+                         "~/Scripts/Cultures/fr-FR.js"));
         }
     }
 }

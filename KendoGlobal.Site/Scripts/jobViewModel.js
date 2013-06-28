@@ -4,6 +4,8 @@
     self.endDateData = null;
     self.jobGridData = null;
     self.id = null;
+    self.percentData = null;
+    self.priceData = null;
     self.name = null;
     self.startDateData = null;
 
@@ -31,6 +33,12 @@
             success: function (result) {
                 self.id(result.Id);
                 self.name(result.Name);
+                if (self.percentData) {
+                    self.percentData.value(result.Percent);
+                }
+                if (self.priceData) {
+                    self.priceData.value(result.Price);
+                }
                 if (self.endDateData) {
                     self.endDateData.value(new Date(result.EndDate));
                 }
