@@ -101,12 +101,12 @@
                 },
                 {
                     field: "StartDate",
-                    format: "{0:" + kendo.culture().calendar.patterns.d + "}",
+                    format: "{0:d}",
                     title: "Start",
                     width: "110px"
                 }, {
                     field: "EndDate",
-                    format: "{0:" + kendo.culture().calendar.patterns.d + "}",
+                    format: "{0:d}",
                     title: "End",
                     width: "110px"
                 }]
@@ -126,7 +126,7 @@
                     start.max(endDate);
                 }
             },
-            format: kendo.culture().calendar.patterns.d
+            format: "d"
         }).data("kendoDatePicker");
         var end = $("#end").kendoDatePicker({
             change: function() {
@@ -138,7 +138,7 @@
                     start.max(endDate);
                 }
             },
-            format: kendo.culture().calendar.patterns.d
+            format: "d"
         }).data("kendoDatePicker");
         start.max(end.value());
         end.min(start.value());
