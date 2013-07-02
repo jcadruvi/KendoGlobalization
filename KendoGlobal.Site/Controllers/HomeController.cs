@@ -20,7 +20,7 @@ namespace KendoGlobal.Controllers
 
         public ActionResult Index()
         {
-            BaseViewModel model = new BaseViewModel();
+            JobViewModel model = new JobViewModel();
             model.Culture = _cultureService.GetCurrentCulture();
             return View("Index", model);
         }

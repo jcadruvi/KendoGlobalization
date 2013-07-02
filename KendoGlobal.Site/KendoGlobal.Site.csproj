@@ -141,6 +141,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BaseViewModel.cs" />
+    <Compile Include="Models\JobViewModel.cs" />
     <Compile Include="NinjectWebApi\NinjectDependencyResolver.cs" />
     <Compile Include="NinjectWebApi\NinjectDependencyScope.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,4 +1,4 @@
-﻿@model KendoGlobal.Models.BaseViewModel
+﻿@model KendoGlobal.Models.JobViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,30 +6,35 @@
 
 <div id="jobGrid"></div>
 <br/>
-<div class="jobLine">
-    <span class="jobLabel">Id: </span>
-    <span data-bind="html: id"></span>
-</div>
-<div class="jobLine">
-    <span class="jobLabel">Name: </span>
-    <input class="k-textbox" data-bind="value: name" id="name" type="text"/>
-</div>
-<div class="jobLine">
-    <span class="jobLabel">Percent: </span>
-    <input id="percent" type="text"/>
-</div>
-<div class="jobLine">
-    <span class="jobLabel">Price: </span>
-    <input id="price" type="text"/>
-</div>
-<div class="jobLine">
-    <span class="jobLabel">Start: </span>
-    <input id="start" type="text"/>
-</div>
-<div class="jobLine">
-    <span class="jobLabel">End: </span>
-    <input id="end" type="text"/>
-</div>
+@{ Html.EnableClientValidation(); }
+
+@using (Html.BeginForm("JobApi/Post", "api", FormMethod.Post, new {id = "storesForm"}))
+{
+    <div class="jobLine">
+        <span class="jobLabel">Id: </span>
+        <span data-bind="html: id"></span>
+    </div>
+    <div class="jobLine">
+        <span class="jobLabel">Name: </span>
+        <input class="k-textbox" data-bind="value: name" id="name" type="text"/>
+    </div>
+    <div class="jobLine">
+        <span class="jobLabel">Percent: </span>
+        <input id="percent" type="text"/>
+    </div>
+    <div class="jobLine">
+        <span class="jobLabel">Price: </span>
+        <input id="price" type="text"/>
+    </div>
+    <div class="jobLine">
+        <span class="jobLabel">Start: </span>
+        <input id="start" type="text"/>
+    </div>
+    <div class="jobLine">
+        <span class="jobLabel">End: </span>
+        <input id="end" type="text"/>
+    </div>
+}
 
 <script src="@Url.Content("~/Scripts/jobViewModel.js")"></script>
 <script>
