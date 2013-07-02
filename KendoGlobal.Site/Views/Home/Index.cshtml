@@ -10,29 +10,30 @@
 
 @using (Html.BeginForm("JobApi/Post", "api", FormMethod.Post, new {id = "storesForm"}))
 {
+    <input class="k-button" type="submit" value="save"/>
     <div class="jobLine">
         <span class="jobLabel">Id: </span>
         <span data-bind="html: id"></span>
     </div>
     <div class="jobLine">
         <span class="jobLabel">Name: </span>
-        <input class="k-textbox" data-bind="value: name" id="name" type="text"/>
+        @Html.TextBoxFor(model => model.Name, new { @class="k-textbox", data_bind="value: name", @id="name" })
     </div>
     <div class="jobLine">
         <span class="jobLabel">Percent: </span>
-        <input id="percent" type="text"/>
+        @Html.TextBoxFor(model => model.Percent, new { @id="percent" })
     </div>
     <div class="jobLine">
         <span class="jobLabel">Price: </span>
-        <input id="price" type="text"/>
+        @Html.TextBoxFor(model => model.Price, new { @id="price" })
     </div>
     <div class="jobLine">
         <span class="jobLabel">Start: </span>
-        <input id="start" type="text"/>
+        @Html.TextBoxFor(model => model.Price, new { @id="start" })
     </div>
     <div class="jobLine">
         <span class="jobLabel">End: </span>
-        <input id="end" type="text"/>
+        @Html.TextBoxFor(model => model.Price, new { @id="end" })
     </div>
 }
 
