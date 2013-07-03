@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using KendoGlobal.App_Start;
+using KendoGlobal.Models;
+using KendoGlobal.Services;
 
 namespace KendoGlobal
 {
@@ -16,6 +18,7 @@ namespace KendoGlobal
     {
         protected void Application_Start()
         {
+            ModelBinders.Binders.Add(typeof(DateTime?), new NullableDateTimeBinder());
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);

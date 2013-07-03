@@ -78,10 +78,5 @@ namespace Mvc4.Controllers
         {
             return _jobs;
         }
-        [HttpPost]
-        public object Post(JobViewModel job)
-        {
-            return null;
-        }
     }
 }

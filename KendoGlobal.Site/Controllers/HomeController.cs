@@ -25,5 +25,11 @@ namespace KendoGlobal.Controllers
             return View("Index", model);
         }
 
+        [HttpPost]
+        public JsonResult Post(JobViewModel job)
+        {
+            return null;
+        }
+
     }
 }
