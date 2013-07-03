@@ -21,7 +21,10 @@
     <script>
         (function () {
             var viewModel = layoutViewModel();
-            kendo.culture().calendar.patterns.d = '@Model.DateFormat';
+            kendo.culture().numberFormat.currency.symbol = "@Html.Raw(Model.CurrencySymbol)";
+            kendo.culture().numberFormat.currency[','] = "@Html.Raw(Model.CurrencyGroupSeperator)";
+            kendo.culture().numberFormat.currency['.'] = "@Html.Raw(Model.CurrencyDecimalSeperator)";
+            kendo.culture().calendar.patterns.d = '@Html.Raw(Model.DateFormat)';
             $.validator.methods.date = function (value, element) {
                 // If kendo can't parse the date they will return value the value. 
                 var val = kendo.parseDate(value, kendo.culture().calendar.patterns.d);
