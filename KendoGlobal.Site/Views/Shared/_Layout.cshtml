@@ -26,9 +26,13 @@
                 culture = 'en-US';
             }
             kendo.culture(culture);
-            $.validator.methods.date = function(value, element) {
+            $.validator.methods.date = function (value, element) {
+                // If kendo can't parse the date they will return value the value. 
                 var val = kendo.parseDate(value, kendo.culture().calendar.patterns.d);
-                return !isNaN(val);
+                if (val && val !== value) {
+                    return true;
+                }
+                return false;
             };
             $('#culture').kendoComboBox({
                 change: viewModel.onCultureChange,
