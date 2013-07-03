@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using KendoGlobal.Models;
 using KendoGlobal.Services;
+using System.Globalization;
+using System.Threading;
 
 namespace KendoGlobal.Controllers
 {
@@ -21,7 +23,6 @@ namespace KendoGlobal.Controllers
         public ActionResult Index()
         {
             JobViewModel model = new JobViewModel();
-            model.Culture = _cultureService.GetCurrentCulture();
             return View("Index", model);
         }
 
@@ -31,5 +32,12 @@ namespace KendoGlobal.Controllers
             return null;
         }
 
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            CultureInfo cultureInfo = new CultureInfo(_cultureService.GetCurrentCulture());
+            Thread.CurrentThread.CurrentCulture = cultureInfo;
+            Thread.CurrentThread.CurrentUICulture = cultureInfo; 
+            base.OnActionExecuting(filterContext);
+        }
     }
 }

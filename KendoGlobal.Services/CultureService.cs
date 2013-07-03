@@ -18,7 +18,12 @@ namespace KendoGlobal.Services
         }
         public string GetCurrentCulture()
         {
-            return _repository.CurrentCulture;
+            string culture = _repository.CurrentCulture;
+            if (culture == null) 
+            {
+                culture = "en-US";
+            }
+            return culture;
         }
         public void SetCurrentCutlure(string culture)
         {

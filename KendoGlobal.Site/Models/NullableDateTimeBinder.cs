@@ -11,7 +11,7 @@ namespace KendoGlobal.Models
 {
     public class NullableDateTimeBinder : IModelBinder
     {
-        public object BindModel(ControllerContext controllerContext, ModelBindingContext modelBindingContext)
+        public object BindModel(ControllerContext actionContext, ModelBindingContext modelBindingContext)
         {
             ICultureService service = new CultureService();
             CultureInfo cultureInfo = new CultureInfo(service.GetCurrentCulture());

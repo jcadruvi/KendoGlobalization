@@ -21,11 +21,7 @@
     <script>
         (function () {
             var viewModel = layoutViewModel();
-            var culture = '@Model.Culture';
-            if (!culture) {
-                culture = 'en-US';
-            }
-            kendo.culture(culture);
+            kendo.culture().calendar.patterns.d = '@Model.DateFormat';
             $.validator.methods.date = function (value, element) {
                 // If kendo can't parse the date they will return value the value. 
                 var val = kendo.parseDate(value, kendo.culture().calendar.patterns.d);
@@ -50,7 +46,7 @@
                 },
                 filter: "contains",
                 suggest: true,
-                value: culture
+                value: '@Model.Culture'
             });
             viewModel.cultureData = $('#culture').data('kendoComboBox');
         })();
