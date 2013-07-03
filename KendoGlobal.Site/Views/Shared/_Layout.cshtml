@@ -26,6 +26,10 @@
                 culture = 'en-US';
             }
             kendo.culture(culture);
+            $.validator.methods.date = function(value, element) {
+                var val = kendo.parseDate(value, kendo.culture().calendar.patterns.d);
+                return !isNaN(val);
+            };
             $('#culture').kendoComboBox({
                 change: viewModel.onCultureChange,
                 dataTextField: "Value",
