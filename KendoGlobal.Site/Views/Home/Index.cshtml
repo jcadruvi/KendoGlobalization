@@ -42,6 +42,11 @@
     (function() {
         var viewModel = jobViewModel();
         viewModel.setObservables();
+        $('#storesForm').ajaxForm({
+            dataType: 'json',
+            iframe: false,
+            type: 'POST'
+        });
         $("#jobGrid").kendoGrid({
             autoBind: true,
             change: viewModel.onJobGridChange,
